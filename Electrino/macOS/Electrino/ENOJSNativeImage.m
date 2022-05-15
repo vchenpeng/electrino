@@ -27,6 +27,7 @@
     NSImage *image = [[NSImage alloc] initWithData:data];
     
     ENOJSNativeImageInstance *jsImage = [[ENOJSNativeImageInstance alloc] init];
+    
     jsImage.image = image;
     
     return jsImage;

@@ -10,7 +10,7 @@
 		5A3C03391ECCDC9E00643964 /* index.html in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5A3C03311ECCDC9200643964 /* index.html */; };
 		5A3C033A1ECCDCA100643964 /* index.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5A3C03321ECCDC9200643964 /* index.js */; };
 		5A3C033B1ECCDCA400643964 /* main.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5A3C03331ECCDC9200643964 /* main.js */; };
-		5A3C033C1ECCDCA600643964 /* package.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5A3C03341ECCDC9200643964 /* package.json */; };
+		5A3C033C1ECCDCA600643964 /* pako.min.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5A3C03341ECCDC9200643964 /* pako.min.js */; };
 		5A3C033F1ECCDDFB00643964 /* ENOJSTray.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3C033E1ECCDDFB00643964 /* ENOJSTray.m */; };
 		5A3C03421ECCDE0400643964 /* ENOJSNativeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3C03411ECCDE0400643964 /* ENOJSNativeImage.m */; };
 		5A3C03451ECCDE1100643964 /* ENOJSIPCMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3C03441ECCDE1100643964 /* ENOJSIPCMain.m */; };
@@ -27,6 +27,14 @@
 		5AA9DBED1EBA55B700EF7CC9 /* ENOJSProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA9DBEC1EBA55B700EF7CC9 /* ENOJSProcess.m */; };
 		5AA9DBF01EBA564600EF7CC9 /* ENOJSConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA9DBEF1EBA564600EF7CC9 /* ENOJSConsole.m */; };
 		5AA9DBF21EBA7C0700EF7CC9 /* ENOBrowserWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AA9DBF11EBA7C0700EF7CC9 /* ENOBrowserWindowController.xib */; };
+		FF8003862702FA900037ED3A /* icon-1@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8003852702FA900037ED3A /* icon-1@4x.png */; };
+		FF8003892702FA990037ED3A /* icon-down@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8003882702FA990037ED3A /* icon-down@4x.png */; };
+		FF80038E2702FAA90037ED3A /* icon-up@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF80038B2702FAA90037ED3A /* icon-up@4x.png */; };
+		FF80038F2702FAA90037ED3A /* icon@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF80038C2702FAA90037ED3A /* icon@4x.png */; };
+		FF8003902702FAA90037ED3A /* icon1@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF80038D2702FAA90037ED3A /* icon1@4x.png */; };
+		FFDF48D22830E69100F4C508 /* core.js in Resources */ = {isa = PBXBuildFile; fileRef = FFDF48CF2830E69100F4C508 /* core.js */; };
+		FFDF48D32830E69100F4C508 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = FFDF48D02830E69100F4C508 /* index.js */; };
+		FFDF48D42830E69100F4C508 /* miscRequests.js in Resources */ = {isa = PBXBuildFile; fileRef = FFDF48D12830E69100F4C508 /* miscRequests.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,7 +47,7 @@
 				5A3C03391ECCDC9E00643964 /* index.html in CopyFiles */,
 				5A3C033A1ECCDCA100643964 /* index.js in CopyFiles */,
 				5A3C033B1ECCDCA400643964 /* main.js in CopyFiles */,
-				5A3C033C1ECCDCA600643964 /* package.json in CopyFiles */,
+				5A3C033C1ECCDCA600643964 /* pako.min.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,14 +57,14 @@
 		5A3C03311ECCDC9200643964 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = "test-tray/index.html"; sourceTree = "<group>"; };
 		5A3C03321ECCDC9200643964 /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = index.js; path = "test-tray/index.js"; sourceTree = "<group>"; };
 		5A3C03331ECCDC9200643964 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = "test-tray/main.js"; sourceTree = "<group>"; };
-		5A3C03341ECCDC9200643964 /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = package.json; path = "test-tray/package.json"; sourceTree = "<group>"; };
+		5A3C03341ECCDC9200643964 /* pako.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = pako.min.js; path = "test-tray/pako.min.js"; sourceTree = "<group>"; };
 		5A3C033D1ECCDDFB00643964 /* ENOJSTray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ENOJSTray.h; sourceTree = "<group>"; };
 		5A3C033E1ECCDDFB00643964 /* ENOJSTray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENOJSTray.m; sourceTree = "<group>"; };
 		5A3C03401ECCDE0400643964 /* ENOJSNativeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ENOJSNativeImage.h; sourceTree = "<group>"; };
 		5A3C03411ECCDE0400643964 /* ENOJSNativeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENOJSNativeImage.m; sourceTree = "<group>"; };
 		5A3C03431ECCDE1100643964 /* ENOJSIPCMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ENOJSIPCMain.h; sourceTree = "<group>"; };
 		5A3C03441ECCDE1100643964 /* ENOJSIPCMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENOJSIPCMain.m; sourceTree = "<group>"; };
-		5AA9DBAE1EB9F58A00EF7CC9 /* ElectrinoTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectrinoTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AA9DBAE1EB9F58A00EF7CC9 /* XMB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA9DBB11EB9F58B00EF7CC9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5AA9DBB21EB9F58B00EF7CC9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5AA9DBB51EB9F58B00EF7CC9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -83,6 +91,14 @@
 		5AA9DBEE1EBA564600EF7CC9 /* ENOJSConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ENOJSConsole.h; sourceTree = "<group>"; };
 		5AA9DBEF1EBA564600EF7CC9 /* ENOJSConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENOJSConsole.m; sourceTree = "<group>"; };
 		5AA9DBF11EBA7C0700EF7CC9 /* ENOBrowserWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ENOBrowserWindowController.xib; sourceTree = "<group>"; };
+		FF8003852702FA900037ED3A /* icon-1@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-1@4x.png"; path = "assets/icon-1@4x.png"; sourceTree = "<group>"; };
+		FF8003882702FA990037ED3A /* icon-down@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-down@4x.png"; path = "assets/icon-down@4x.png"; sourceTree = "<group>"; };
+		FF80038B2702FAA90037ED3A /* icon-up@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-up@4x.png"; path = "assets/icon-up@4x.png"; sourceTree = "<group>"; };
+		FF80038C2702FAA90037ED3A /* icon@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@4x.png"; path = "assets/icon@4x.png"; sourceTree = "<group>"; };
+		FF80038D2702FAA90037ED3A /* icon1@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon1@4x.png"; path = "assets/icon1@4x.png"; sourceTree = "<group>"; };
+		FFDF48CF2830E69100F4C508 /* core.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = core.js; sourceTree = "<group>"; };
+		FFDF48D02830E69100F4C508 /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		FFDF48D12830E69100F4C508 /* miscRequests.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = miscRequests.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +115,19 @@
 		5A3C03301ECCDC8700643964 /* test-tray */ = {
 			isa = PBXGroup;
 			children = (
+				FFDF48CE2830E69100F4C508 /* tradingview */,
+				FF8003852702FA900037ED3A /* icon-1@4x.png */,
+				FF8003882702FA990037ED3A /* icon-down@4x.png */,
+				FF80038B2702FAA90037ED3A /* icon-up@4x.png */,
+				FF80038C2702FAA90037ED3A /* icon@4x.png */,
+				FF80038D2702FAA90037ED3A /* icon1@4x.png */,
 				5A3C03311ECCDC9200643964 /* index.html */,
 				5A3C03321ECCDC9200643964 /* index.js */,
 				5A3C03331ECCDC9200643964 /* main.js */,
-				5A3C03341ECCDC9200643964 /* package.json */,
+				5A3C03341ECCDC9200643964 /* pako.min.js */,
 			);
 			name = "test-tray";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		5AA9DBA51EB9F58A00EF7CC9 = {
@@ -120,7 +143,7 @@
 		5AA9DBAF1EB9F58A00EF7CC9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5AA9DBAE1EB9F58A00EF7CC9 /* ElectrinoTest.app */,
+				5AA9DBAE1EB9F58A00EF7CC9 /* XMB.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,7 +182,8 @@
 				5AA9DBC91EBA0BDD00EF7CC9 /* main.js */,
 				5AA9DBCA1EBA0BDD00EF7CC9 /* package.json */,
 			);
-			path = "test-app";
+			name = "test-app";
+			path = "../test-app";
 			sourceTree = "<group>";
 		};
 		5AA9DBD51EBA4D8500EF7CC9 /* JS API implementations */ = {
@@ -187,12 +211,23 @@
 			name = "JS API implementations";
 			sourceTree = "<group>";
 		};
+		FFDF48CE2830E69100F4C508 /* tradingview */ = {
+			isa = PBXGroup;
+			children = (
+				FFDF48CF2830E69100F4C508 /* core.js */,
+				FFDF48D02830E69100F4C508 /* index.js */,
+				FFDF48D12830E69100F4C508 /* miscRequests.js */,
+			);
+			name = tradingview;
+			path = "test-tray/tradingview";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5AA9DBAD1EB9F58A00EF7CC9 /* ElectrinoTest */ = {
+		5AA9DBAD1EB9F58A00EF7CC9 /* XMB */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5AA9DBBF1EB9F58B00EF7CC9 /* Build configuration list for PBXNativeTarget "ElectrinoTest" */;
+			buildConfigurationList = 5AA9DBBF1EB9F58B00EF7CC9 /* Build configuration list for PBXNativeTarget "XMB" */;
 			buildPhases = (
 				5AA9DBAA1EB9F58A00EF7CC9 /* Sources */,
 				5AA9DBAB1EB9F58A00EF7CC9 /* Frameworks */,
@@ -203,9 +238,9 @@
 			);
 			dependencies = (
 			);
-			name = ElectrinoTest;
-			productName = Electrino;
-			productReference = 5AA9DBAE1EB9F58A00EF7CC9 /* ElectrinoTest.app */;
+			name = XMB;
+			productName = XMB;
+			productReference = 5AA9DBAE1EB9F58A00EF7CC9 /* XMB.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -228,6 +263,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -236,7 +272,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5AA9DBAD1EB9F58A00EF7CC9 /* ElectrinoTest */,
+				5AA9DBAD1EB9F58A00EF7CC9 /* XMB */,
 			);
 		};
 /* End PBXProject section */
@@ -248,7 +284,15 @@
 			files = (
 				5AA9DBB81EB9F58B00EF7CC9 /* Assets.xcassets in Resources */,
 				5AA9DBF21EBA7C0700EF7CC9 /* ENOBrowserWindowController.xib in Resources */,
+				FF80038F2702FAA90037ED3A /* icon@4x.png in Resources */,
 				5AA9DBBB1EB9F58B00EF7CC9 /* MainMenu.xib in Resources */,
+				FF8003892702FA990037ED3A /* icon-down@4x.png in Resources */,
+				FFDF48D32830E69100F4C508 /* index.js in Resources */,
+				FF8003902702FAA90037ED3A /* icon1@4x.png in Resources */,
+				FFDF48D22830E69100F4C508 /* core.js in Resources */,
+				FFDF48D42830E69100F4C508 /* miscRequests.js in Resources */,
+				FF80038E2702FAA90037ED3A /* icon-up@4x.png in Resources */,
+				FF8003862702FA900037ED3A /* icon-1@4x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +428,7 @@
 				INFOPLIST_FILE = Electrino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = fi.lacquer.ElectrinoTest;
+				PRODUCT_BUNDLE_IDENTIFIER = fi.lacquer.XMB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -397,7 +441,7 @@
 				INFOPLIST_FILE = Electrino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = fi.lacquer.ElectrinoTest;
+				PRODUCT_BUNDLE_IDENTIFIER = fi.lacquer.XMB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -414,7 +458,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5AA9DBBF1EB9F58B00EF7CC9 /* Build configuration list for PBXNativeTarget "ElectrinoTest" */ = {
+		5AA9DBBF1EB9F58B00EF7CC9 /* Build configuration list for PBXNativeTarget "XMB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5AA9DBC01EB9F58B00EF7CC9 /* Debug */,

@@ -19,6 +19,14 @@ JSExportAs(on,
 - (void)on:(NSString *)event withCallback:(JSValue *)cb
 );
 
+JSExportAs(notify,
+- (void)notify:(NSString *)title:(NSString *)content
+);
+
+JSExportAs(runCmd,
+- (NSString *)runCmd:(NSString *)text:(JSValue *) cb
+);
+
 @end
 
 

@@ -37,4 +37,11 @@
     }
 }
 
+- (void)send:(NSString *)event data:(JSValue *)args
+{
+    for (JSValue *func in self.eventCallbacks[event]) {
+        [func callWithArguments:@[args]];
+    }
+}
+
 @end

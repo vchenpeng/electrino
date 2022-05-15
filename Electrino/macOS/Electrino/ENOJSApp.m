@@ -10,12 +10,12 @@
 
 #import "ENOJSApp.h"
 #import "ENOJavaScriptApp.h"
+#import "ENOJSTray.h"
 
 
 @interface ENOJSApp ()
 
 @property (nonatomic, strong) NSMutableDictionary *eventCallbacks;
-
 @end
 
 
@@ -62,6 +62,43 @@
         }
     }
     return YES;
+}
+
+- (void)notify:(NSString *)title:(NSString *)content  {
+    NSUserNotification *userNotification = [[NSUserNotification alloc] init];
+    userNotification.title = title;
+    userNotification.informativeText = content;
+
+//    printf("trying to throw {%s %s}\n", [[userNotification title] UTF8String], [[userNotification informativeText] UTF8String]);
+
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:userNotification];
+}
+
+- (NSString *)runCmd:(NSString *)command:(JSValue *)cb
+{
+    NSString* cmd = [@"source ~/.bash_profile \r\n" stringByAppendingFormat:@"%@",command];
+
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath: @"/bin/sh"];
+    
+    NSPipe *pipe = [NSPipe pipe];
+    [task setStandardOutput:pipe];
+    NSFileHandle *file = [pipe fileHandleForReading];
+    
+    NSArray *arguments;
+    arguments = [NSArray arrayWithObjects:@"-c",cmd, nil];
+    [task setArguments: arguments];
+    [task launch];
+    [task waitUntilExit];
+    //获取返回值并输出
+    NSData *data = [file readDataToEndOfFile];
+    NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    
+    NSString *temp = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        
+    NSString *result = [temp stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return result;
 }
 
 @end

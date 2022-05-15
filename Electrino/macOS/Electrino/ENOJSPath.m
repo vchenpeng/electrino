@@ -22,7 +22,6 @@
     self.join = ^NSString *(){
         NSArray *args = [JSContext currentArguments];
         NSString *pathSep = @"/";
-        
         return [args componentsJoinedByString:pathSep];
     };
     

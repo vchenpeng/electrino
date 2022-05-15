@@ -18,6 +18,10 @@ JSExportAs(on,
 - (void)on:(NSString *)event withCallback:(JSValue *)cb
 );
 
+JSExportAs(send,
+- (void)send:(NSString *)event data:(JSValue *)args
+);
+
 @end
 
 

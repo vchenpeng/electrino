@@ -9,6 +9,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ENOJSNativeImage.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
 
@@ -16,11 +17,21 @@
 
 - (instancetype)initWithIcon:(id)icon;
 
+- (instancetype)distroy;
+
 JSExportAs(on,
 - (void)on:(NSString *)event withCallback:(JSValue *)cb
 );
 
 - (NSDictionary *)getBounds;
+
+JSExportAs(setTitle,
+- (void)setTitle:(NSString *)title
+);
+
+JSExportAs(setIcon,
+- (void)setIcon:(NSString *)name
+);
 
 @end
 

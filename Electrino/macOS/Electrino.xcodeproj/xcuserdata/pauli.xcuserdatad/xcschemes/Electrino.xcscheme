@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5AA9DBAD1EB9F58A00EF7CC9"
-               BuildableName = "ElectrinoTest.app"
-               BlueprintName = "ElectrinoTest"
+               BuildableName = "XMB.app"
+               BlueprintName = "XMB"
                ReferencedContainer = "container:Electrino.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5AA9DBAD1EB9F58A00EF7CC9"
-            BuildableName = "ElectrinoTest.app"
-            BlueprintName = "ElectrinoTest"
+            BuildableName = "XMB.app"
+            BlueprintName = "XMB"
             ReferencedContainer = "container:Electrino.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5AA9DBAD1EB9F58A00EF7CC9"
-            BuildableName = "ElectrinoTest.app"
-            BlueprintName = "ElectrinoTest"
+            BuildableName = "XMB.app"
+            BlueprintName = "XMB"
             ReferencedContainer = "container:Electrino.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5AA9DBAD1EB9F58A00EF7CC9"
-            BuildableName = "ElectrinoTest.app"
-            BlueprintName = "ElectrinoTest"
+            BuildableName = "XMB.app"
+            BlueprintName = "XMB"
             ReferencedContainer = "container:Electrino.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
