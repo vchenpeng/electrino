@@ -1,8 +1,3 @@
-const url = require('url');
-const https = require('https');
-const SocksProxyAgent = require('socks-proxy-agent');
-const HttpsProxyAgent = require('https-proxy-agent');
-
 const indicators = ['Recommend.Other', 'Recommend.All', 'Recommend.MA'];
 
 function fetchScanData (tickers = [], type = '', columns = []) {
@@ -59,7 +54,7 @@ function fetchScanData (tickers = [], type = '', columns = []) {
  * You can use `getScreener(exchange)` function for non-forex and non-crypto markets.
  */
 
-module.exports = {
+export default {
   /**
    * @param {string} exchange Example: BINANCE, EURONEXT, NASDAQ
    * @returns {screener}
@@ -205,8 +200,6 @@ module.exports = {
       var endpoint = process.argv[2] || `https://pine-facade.tradingview.com/pine-facade/translate/${id}/${version}`;
       console.log('attempting to GET %j', endpoint);
       var options = url.parse(endpoint);
-      var agent = new HttpsProxyAgent(proxy);
-      options.agent = agent;
 
       https.get(options, (res) => {
         let rs = '';
@@ -280,8 +273,6 @@ module.exports = {
       var endpoint = location;
       console.log('attempting to GET %j', endpoint);
       var options = url.parse(endpoint);
-      var agent = new HttpsProxyAgent(proxy);
-      options.agent = agent;
       https.get(location, {
         headers: { cookie: `sessionid=${session}` },
         host: 'symbol-search.tradingview.com',

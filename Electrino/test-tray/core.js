@@ -1,13 +1,8 @@
-const WebSocket = require('ws');
-const url = require('url');
-const HttpsProxyAgent = require('https-proxy-agent');
-const SocksProxyAgent = require('socks-proxy-agent');
-const {
-  search, getScreener, getTA, getIndicator, getUserToken,
-} = require('./miscRequests');
+import {
+  search, getScreener, getTA, getIndicator, getUserToken
+} from './miscRequests.js';
 
-
-module.exports = function (autoInit = true) {
+export default function (autoInit = true) {
   let onPacket = () => null;
 
   function parse (str) {
@@ -319,7 +314,7 @@ module.exports = function (autoInit = true) {
         };
         if (chart.session) {
           let userToken = await getUserToken(chart.session);
-         
+
           send('set_auth_token', [userToken]);
         }
         send('chart_create_session', [chartSession, '']);

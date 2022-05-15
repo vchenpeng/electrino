@@ -1,10 +1,6 @@
-const _ = require('lodash');
-const moment = require('moment');
-const WebSocket = require('ws');
-const zlib = require('zlib');
-const marketAPI = require('./core');
+import marketAPI from './core.js';
 
-module.exports = {
+export default {
   init (options) {
     let client = null;
     let tvInfo = {
