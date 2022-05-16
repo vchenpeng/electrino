@@ -42,8 +42,8 @@ function initWebsocket () {
   // });
   client.onclose = function () {
     console.log('event close');
-    // initWebsocket();
-    app.notify('通知', 'Websocket断开了链接');
+    initWebsocket();
+    // app.notify('通知', 'Websocket断开了链接');
   };
   client.onopen = function () {
     client.send(JSON.stringify(opConfig));

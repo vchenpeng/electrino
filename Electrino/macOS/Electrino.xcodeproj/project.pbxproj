@@ -32,9 +32,6 @@
 		FF80038E2702FAA90037ED3A /* icon-up@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF80038B2702FAA90037ED3A /* icon-up@4x.png */; };
 		FF80038F2702FAA90037ED3A /* icon@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF80038C2702FAA90037ED3A /* icon@4x.png */; };
 		FF8003902702FAA90037ED3A /* icon1@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF80038D2702FAA90037ED3A /* icon1@4x.png */; };
-		FFDF48D22830E69100F4C508 /* core.js in Resources */ = {isa = PBXBuildFile; fileRef = FFDF48CF2830E69100F4C508 /* core.js */; };
-		FFDF48D32830E69100F4C508 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = FFDF48D02830E69100F4C508 /* index.js */; };
-		FFDF48D42830E69100F4C508 /* miscRequests.js in Resources */ = {isa = PBXBuildFile; fileRef = FFDF48D12830E69100F4C508 /* miscRequests.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,9 +93,6 @@
 		FF80038B2702FAA90037ED3A /* icon-up@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-up@4x.png"; path = "assets/icon-up@4x.png"; sourceTree = "<group>"; };
 		FF80038C2702FAA90037ED3A /* icon@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@4x.png"; path = "assets/icon@4x.png"; sourceTree = "<group>"; };
 		FF80038D2702FAA90037ED3A /* icon1@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon1@4x.png"; path = "assets/icon1@4x.png"; sourceTree = "<group>"; };
-		FFDF48CF2830E69100F4C508 /* core.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = core.js; sourceTree = "<group>"; };
-		FFDF48D02830E69100F4C508 /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
-		FFDF48D12830E69100F4C508 /* miscRequests.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = miscRequests.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +109,6 @@
 		5A3C03301ECCDC8700643964 /* test-tray */ = {
 			isa = PBXGroup;
 			children = (
-				FFDF48CE2830E69100F4C508 /* tradingview */,
 				FF8003852702FA900037ED3A /* icon-1@4x.png */,
 				FF8003882702FA990037ED3A /* icon-down@4x.png */,
 				FF80038B2702FAA90037ED3A /* icon-up@4x.png */,
@@ -211,17 +204,6 @@
 			name = "JS API implementations";
 			sourceTree = "<group>";
 		};
-		FFDF48CE2830E69100F4C508 /* tradingview */ = {
-			isa = PBXGroup;
-			children = (
-				FFDF48CF2830E69100F4C508 /* core.js */,
-				FFDF48D02830E69100F4C508 /* index.js */,
-				FFDF48D12830E69100F4C508 /* miscRequests.js */,
-			);
-			name = tradingview;
-			path = "test-tray/tradingview";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -287,10 +269,7 @@
 				FF80038F2702FAA90037ED3A /* icon@4x.png in Resources */,
 				5AA9DBBB1EB9F58B00EF7CC9 /* MainMenu.xib in Resources */,
 				FF8003892702FA990037ED3A /* icon-down@4x.png in Resources */,
-				FFDF48D32830E69100F4C508 /* index.js in Resources */,
 				FF8003902702FAA90037ED3A /* icon1@4x.png in Resources */,
-				FFDF48D22830E69100F4C508 /* core.js in Resources */,
-				FFDF48D42830E69100F4C508 /* miscRequests.js in Resources */,
 				FF80038E2702FAA90037ED3A /* icon-up@4x.png in Resources */,
 				FF8003862702FA900037ED3A /* icon-1@4x.png in Resources */,
 			);
