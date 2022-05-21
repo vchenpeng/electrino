@@ -1,6 +1,17 @@
 
 const { app, BrowserWindow, ipcMain, tray, nativeImage } = jsModules.electrino;
 
+document.addEventListener('DOMContentLoaded', () => {
+  console.log("index.js dom loaded");
+  let n = new Notification('You did it!', {
+    body: 'Nice work.'
+  })
+  // Tell the notification to show the menubar popup window on click
+  n.onclick = () => { ipcRenderer.send('show-window') };
+});
+tray.on('click', function () {
+  tray.setIcon('icon-up@4x.png');
+});
 // const token = `eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJleDExMDE1OTkwMTMwNzc0MTI0MURGOTFDMkUxOEExQkNFS0lYeSIsInVpZCI6ImVoYzlBZXlmNmVlekVmY0crMWNsYWc9PSIsInN0YSI6MCwibWlkIjoiZWhjOUFleWY2ZWV6RWZjRysxY2xhZz09IiwiaWF0IjoxNTk5MDEzMDc3LCJleHAiOjE1OTk2MTc4NzcsImJpZCI6MCwiZG9tIjoib2tleC5tZSIsImlzcyI6Im9rY29pbiIsInN1YiI6IjY1MUQ5NzMzM0NCNzI0NTEwNjNCRThDOTM1M0JDRjk1In0.8liuxq8P3Tb0S2ZqVNZOcgmRFKuga8KhEOc7twWGuSsGX-j5pd9FkUfblE3DEBeghhRpOzOvAk1PLFaE-mL5mw`;
 const opConfig = {
   op: 'subscribe',
@@ -8,8 +19,6 @@ const opConfig = {
     { channel: 'tickers', instId: 'BTC-USDT-SWAP' }
   ],
 };
-
-tray.setIcon('icon@4x.png');
 // okex socket
 initWebsocket();
 var client;
@@ -34,7 +43,7 @@ function initWebsocket () {
   client.onclose = function () {
     console.log('event close');
     initWebsocket();
-    // app.notify('通知', 'Websocket断开了连接');
+    // app.notify('通知', 'Websocket断开了链接');
   };
   client.onopen = function () {
     client.send(JSON.stringify(opConfig));
@@ -47,6 +56,7 @@ function initWebsocket () {
         lastTimestamp = +new Date();
         let price = Number(okexInfo.last);
         let title = price.toFixed(1);
+        tray.setIcon('icon@4x.png');
         tray.setTitle(title);
       }
     } catch (error) {
@@ -66,30 +76,9 @@ function uint8ArrayToString (fileData) {
 function closeClient () {
   if (client) {
     client.close();
+    client = null;
   }
 }
-
-function reConnection () {
-  setTimeout(() => {
-    initWebsocket();
-  }, 1000);
-}
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   console.log("index.js dom loaded");
-//   let n = new Notification('You did it!', {
-//     body: 'Nice work.'
-//   })
-//   n.onclick = () => {
-//     ipcRenderer.send('show-window');
-//   };
-// });
-tray.on('click', function () {
-  // tray.setIcon('icon-up@4x.png');
-  // app.notify('通知', '重新连接 websocket');
-  // initWebsocket();
-  window.location.reload();
-});
 
 window.addEventListener('offline', () => {
   closeClient();
@@ -104,4 +93,4 @@ setInterval(() => {
     initWebsocket();
   }
   // app.runCmd(`open -a wechat`);
-}, 10 * 1000);
+}, 5 * 1000);
