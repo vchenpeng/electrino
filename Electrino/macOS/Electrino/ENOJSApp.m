@@ -10,7 +10,6 @@
 
 #import "ENOJSApp.h"
 #import "ENOJavaScriptApp.h"
-#import "ENOJSTray.h"
 
 
 @interface ENOJSApp ()
