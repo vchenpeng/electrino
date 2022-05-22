@@ -159,12 +159,6 @@
     self.statusItem.title = title;
     self.statusItem.highlightMode = TRUE;
     self.statusItem.enabled = TRUE;
-    
-//    [self notify:title];
-//    //创建一个消息对象
-//    NSNotification * notice = [NSNotification notificationWithName:@"test" object:nil userInfo:@{@"price":title}];
-//        //发送消息
-//    [[NSNotificationCenter defaultCenter]postNotification:notice];
 }
 
 - (void)setIcon:(NSString *)name

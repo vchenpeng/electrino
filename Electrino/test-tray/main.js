@@ -1,10 +1,9 @@
 const electrino = require("electrino");
-const { app, BrowserWindow, ipcMain, Tray, nativeImage } = require('electrino')
+const { app, tray, BrowserWindow, ipcMain, Tray, nativeImage } = require('electrino')
 const path = require('path');
 const assetsDir = path.join(__dirname, 'assets')
 
-let window = undefined
-
+let window = undefined;
 app.on('ready', () => {
   // Setup the menubar with an icon
   // let client = new WebSocket('wss://real.coinall.ltd:8443/ws/v3');
@@ -17,30 +16,18 @@ app.on('ready', () => {
   ipcMain.on('message', function (data) {
     // tray.setTitle(data+'99');
   });
-  // electrino.tray.on('click', function (event) {
-  //   toggleWindow();
-  //   ipcMain.send('message', 'aaa');
-  //   let icon = nativeImage.createFromDataURL(base64Icon);
-  //   let random = Math.floor(Math.random() * 10);
-  //   let iconName = 'icon@4x.png';
-  //   if (random < 3) {
-  //     iconName = 'icon-down-down@4x.png';
-  //   } else if (random > 7) {
-  //     iconName = 'icon-up-up@4x.png';
-  //   }
-  //   // tray.setIcon(iconName);
-  //   // tray.setTitle(new Date().toTimeString());
-  //   notify('测试', '内容XXX');
-  //   // Show devtools when command clicked
-  //   if (window.isVisible() && process.defaultApp && event.metaKey) {
-  //     window.openDevTools({ mode: 'detach' })
-  //   }
-  // })
+
+  tray.setIcon('icon@4x.png');
+  tray.on('click', function (event) {
+    // window.loadURL(`file://${path.join(__dirname, 'index.html')}`);
+    tray.setIcon('icon@4x.png');
+    window.reload();
+  });
 
   // Make the popup window for the menubar
   window = new BrowserWindow({
-    width: 1366 / 4,
-    height: 768 / 4,
+    width: 500,
+    height: 350,
     show: false,
     frame: true,
     resizable: true
@@ -49,13 +36,7 @@ app.on('ready', () => {
   // Tell the popup window to load our index.html file
   // window.loadURL(`file://${path.join(__dirname, 'index.html')}`);
   window.loadURL(`https://cn.tradingview.com/chart/Bz44ipwy/?symbol=OKEX%3ABTCUSDT`);
-
-  // Only close the window on blur if dev tools isn't opened
-  window.on('blur', () => {
-    if (!window.webContents.isDevToolsOpened()) {
-      window.hide()
-    }
-  })
+  window.on('blur', () => { })
 })
 
 const toggleWindow = () => {

@@ -1,6 +1,7 @@
 
 const { app, BrowserWindow, ipcMain, tray, nativeImage } = jsModules.electrino;
 
+const isInTvPage = window.location.host === 'cn.tradingview.com';
 document.addEventListener('DOMContentLoaded', () => {
   console.log("index.js dom loaded");
   let n = new Notification('You did it!', {
@@ -9,11 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Tell the notification to show the menubar popup window on click
   n.onclick = () => { ipcRenderer.send('show-window') };
   // https://pine-facade.tradingview.com/pine-facade/translate/USER;muCkNRKEaqiuwWh8gaxA6VWF8AlvQ5YN/302.0
-  initTv();
-});
-tray.on('click', function () {
-  // tray.setIcon('icon-up@4x.png');
-  window.location.reload();
+  if (isInTvPage) {
+    initTv();
+  }
 });
 // const token = `eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJleDExMDE1OTkwMTMwNzc0MTI0MURGOTFDMkUxOEExQkNFS0lYeSIsInVpZCI6ImVoYzlBZXlmNmVlekVmY0crMWNsYWc9PSIsInN0YSI6MCwibWlkIjoiZWhjOUFleWY2ZWV6RWZjRysxY2xhZz09IiwiaWF0IjoxNTk5MDEzMDc3LCJleHAiOjE1OTk2MTc4NzcsImJpZCI6MCwiZG9tIjoib2tleC5tZSIsImlzcyI6Im9rY29pbiIsInN1YiI6IjY1MUQ5NzMzM0NCNzI0NTEwNjNCRThDOTM1M0JDRjk1In0.8liuxq8P3Tb0S2ZqVNZOcgmRFKuga8KhEOc7twWGuSsGX-j5pd9FkUfblE3DEBeghhRpOzOvAk1PLFaE-mL5mw`;
 const opConfig = {
@@ -22,8 +21,6 @@ const opConfig = {
     { channel: 'tickers', instId: 'BTC-USDT-SWAP' }
   ],
 };
-
-tray.setIcon('icon@4x.png');
 // okex socket
 initWebsocket();
 var client;
@@ -63,7 +60,6 @@ function initWebsocket () {
         let price = Number(okexInfo.last);
         let title = price.toFixed(1);
         tray.setTitle(title);
-        // tray.setIcon('icon@4x.png');
       }
     } catch (error) {
 
@@ -168,8 +164,7 @@ window.addEventListener('online', () => {
 
 setInterval(() => {
   let now = +new Date();
-  if (now - lastTimestamp > 15 * 1000 || now - tvTimestamp > 15 * 1000) {
-    // initWebsocket();
+  if (now - lastTimestamp > 15 * 1000 || (isInTvPage && now - tvTimestamp > 15 * 1000)) {
     window.location.reload();
   }
   // app.runCmd(`open -a wechat`);

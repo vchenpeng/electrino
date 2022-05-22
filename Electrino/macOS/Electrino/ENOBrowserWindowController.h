@@ -19,5 +19,6 @@
 - (instancetype)initAsResizable:(BOOL)resizable hasFrame:(BOOL)hasFrame;
 
 - (void)loadURL:(NSURL *)url;
+- (void)reload;
 
 @end

@@ -18,6 +18,7 @@
 - (instancetype)initWithOptions:(NSDictionary *)opts;
 
 - (void)loadURL:(NSString *)url;
+- (void)reload;
 
 - (BOOL)isVisible;
 - (void)show;

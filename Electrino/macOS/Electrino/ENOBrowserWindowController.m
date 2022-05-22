@@ -127,7 +127,11 @@
         [self.webView.mainFrame loadRequest:request];
         // NSLog(@"** %s: only supports file urls", __func__);
     }
-    
+}
+
+- (void)reload
+{
+    [self.webView.mainFrame reload];
 }
 
 #if !USE_WKWEBVIEW

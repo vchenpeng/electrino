@@ -70,6 +70,11 @@
     [self.windowController loadURL:url];
 }
 
+- (void)reload
+{
+    [self.windowController reload];
+}
+
 - (void)on:(NSString *)event withCallback:(JSValue *)cb
 {
     if (event.length > 0 && cb) {
