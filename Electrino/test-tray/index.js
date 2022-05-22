@@ -8,9 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   // Tell the notification to show the menubar popup window on click
   n.onclick = () => { ipcRenderer.send('show-window') };
+  // https://pine-facade.tradingview.com/pine-facade/translate/USER;muCkNRKEaqiuwWh8gaxA6VWF8AlvQ5YN/302.0
+  initTv();
 });
 tray.on('click', function () {
-  tray.setIcon('icon-up@4x.png');
+  // tray.setIcon('icon-up@4x.png');
+  window.location.reload();
 });
 // const token = `eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJleDExMDE1OTkwMTMwNzc0MTI0MURGOTFDMkUxOEExQkNFS0lYeSIsInVpZCI6ImVoYzlBZXlmNmVlekVmY0crMWNsYWc9PSIsInN0YSI6MCwibWlkIjoiZWhjOUFleWY2ZWV6RWZjRysxY2xhZz09IiwiaWF0IjoxNTk5MDEzMDc3LCJleHAiOjE1OTk2MTc4NzcsImJpZCI6MCwiZG9tIjoib2tleC5tZSIsImlzcyI6Im9rY29pbiIsInN1YiI6IjY1MUQ5NzMzM0NCNzI0NTEwNjNCRThDOTM1M0JDRjk1In0.8liuxq8P3Tb0S2ZqVNZOcgmRFKuga8KhEOc7twWGuSsGX-j5pd9FkUfblE3DEBeghhRpOzOvAk1PLFaE-mL5mw`;
 const opConfig = {
@@ -19,10 +22,13 @@ const opConfig = {
     { channel: 'tickers', instId: 'BTC-USDT-SWAP' }
   ],
 };
+
+tray.setIcon('icon@4x.png');
 // okex socket
 initWebsocket();
 var client;
 var lastTimestamp = +new Date();
+var tvTimestamp = +new Date();
 function initWebsocket () {
   closeClient();
   console.log('init ws');
@@ -56,8 +62,8 @@ function initWebsocket () {
         lastTimestamp = +new Date();
         let price = Number(okexInfo.last);
         let title = price.toFixed(1);
-        tray.setIcon('icon@4x.png');
         tray.setTitle(title);
+        // tray.setIcon('icon@4x.png');
       }
     } catch (error) {
 
@@ -80,6 +86,79 @@ function closeClient () {
   }
 }
 
+function getCookie (name) {
+  var prefix = name + "="
+  var start = document.cookie.indexOf(prefix)
+  if (start == -1) {
+    return null;
+  }
+  var end = document.cookie.indexOf(";", start + prefix.length)
+  if (end == -1) {
+    end = document.cookie.length;
+  }
+  var value = document.cookie.substring(start + prefix.length, end)
+  return unescape(value);
+}
+
+function initTv () {
+  fetch(`https://pine-facade.tradingview.com/pine-facade/translate/USER;muCkNRKEaqiuwWh8gaxA6VWF8AlvQ5YN/306.0`).then(res => {
+    return res.json();
+  }).then(res => {
+    console.log('pine', res);
+    if (res.success === true) {
+      let metaInfo = res.result.metaInfo.styles;
+      var plots = {};
+      Object.keys(res.result.metaInfo.styles).forEach((plotId) => {
+        plots[plotId] = res.result.metaInfo.styles[plotId].title.replace(/ /g, '_');//.replace(/[^a-zA-Z0-9]/g, '');
+      });
+      console.log('plots', plots);
+      return plots;
+    } else {
+      throw new Error('pine error');
+    }
+  }).then(plots => {
+    WSBackendConnection._socket._events.message.push(function (info) {
+      try {
+        tvTimestamp = +new Date();
+        let json = JSON.parse(info);
+        // tray.setTitle(document.title);
+        if (json.m === 'du' && typeof json.p[1]['st4'] === 'object' && json.p[1]['st4']['t'] === 's1_st1') {
+          let st = json.p[1]['st4']['st'][0].v;
+          let timestamp = st.shift();
+          let result = {
+            timestamp: timestamp
+          };
+          st.forEach((value, i) => {
+            let key = plots[`plot_${i}`];
+            key = ['Plot', '', undefined].includes(key) ? `plot_${i}` : key;
+            result[`${key}`] = value;
+          });
+          let dir = result.dir;
+          let hasMarket = result.has_market;
+          console.log('json2', result);
+          if (dir === 1) {
+            if (hasMarket === 1) {
+              tray.setIcon('icon-up@4x.png');
+            } else {
+              tray.setIcon('icon1@4x.png');
+            }
+          } else if (dir === -1) {
+            if (hasMarket === 1) {
+              tray.setIcon('icon-down@4x.png');
+            } else {
+              tray.setIcon('icon-1@4x.png');
+            }
+          } else {
+            tray.setIcon('icon@4x.png');
+          }
+        }
+      } catch (error) {
+
+      }
+    });
+  });
+}
+
 window.addEventListener('offline', () => {
   closeClient();
 });
@@ -89,8 +168,9 @@ window.addEventListener('online', () => {
 
 setInterval(() => {
   let now = +new Date();
-  if (now - lastTimestamp > 15 * 1000) {
-    initWebsocket();
+  if (now - lastTimestamp > 15 * 1000 || now - tvTimestamp > 15 * 1000) {
+    // initWebsocket();
+    window.location.reload();
   }
   // app.runCmd(`open -a wechat`);
 }, 5 * 1000);

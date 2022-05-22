@@ -19,10 +19,9 @@ extern NSString * const kENOJavaScriptErrorDomain;
 @interface ENOJavaScriptApp : NSObject
 
 + (instancetype)sharedApp;
-+ (instancetype)getjsModules;
 
 @property (nonatomic, readonly) JSContext *jsContext;
-
+@property (nonatomic, readonly, strong) NSDictionary *jsModules;
 @property (nonatomic, readonly) ENOJSApp *jsAppGlobalObject;
 
 @property (nonatomic, strong) NSString *lastException;

@@ -39,16 +39,16 @@ app.on('ready', () => {
 
   // Make the popup window for the menubar
   window = new BrowserWindow({
-    width: 300,
-    height: 350,
+    width: 1366 / 4,
+    height: 768 / 4,
     show: false,
     frame: true,
-    resizable: false
+    resizable: true
   });
 
   // Tell the popup window to load our index.html file
-  window.loadURL(`file://${path.join(__dirname, 'index.html')}`);
-  // window.loadURL(`https://mp.weixin.qq.com`);
+  // window.loadURL(`file://${path.join(__dirname, 'index.html')}`);
+  window.loadURL(`https://cn.tradingview.com/chart/Bz44ipwy/?symbol=OKEX%3ABTCUSDT`);
 
   // Only close the window on blur if dev tools isn't opened
   window.on('blur', () => {

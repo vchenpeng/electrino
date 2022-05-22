@@ -27,7 +27,7 @@ NSString * const kENOJavaScriptErrorDomain = @"ENOJavaScriptErrorDomain";
 
 @property (nonatomic, strong) JSVirtualMachine *jsVM;
 @property (nonatomic, strong) JSContext *jsContext;
-@property (nonatomic, strong) NSDictionary *jsModules;
+@property (nonatomic, readwrite, strong) NSDictionary *jsModules;
 @property (nonatomic, strong) ENOJSApp *jsAppGlobalObject;
 @property (nonatomic, strong) ENOJSIPCMain *jsIPCMain;
 @property (nonatomic, strong) ENOJSTray *tray;
@@ -47,16 +47,6 @@ NSString * const kENOJavaScriptErrorDomain = @"ENOJavaScriptErrorDomain";
         s_app = [[self alloc] init];
     });
     return s_app;
-}
-
-+ (instancetype)getjsModules
-{
-    static ENOJavaScriptApp *jsApp = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        jsApp = [[self alloc] init];
-    });
-    return jsApp.jsModules;
 }
 
 - (id)init
