@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>设置</title>
+    <style>
+      * {
+        font-family: -apple-system;
+        font-size: 12px;
+        user-select: none;
+        outline: none;
+      }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      // document.oncontextmenu = function () {
+      //   event.returnValue = false;
+      // };
+      // document.onselectstart = function () {
+      //   event.returnValue = false;
+      // };
+      // document.oncopy = function (e) {
+      //   if (e.input) {
+      //   }
+      //   event.returnValue = false;
+      // };
+    </script>
+  </head>
+  <body>
+    <div>
+      <label for="switch-2">这里设置：</label>
+      <span>
+        <input type="text" id="txtSessionId" name="invalid" placeholder="" aria-invalid="true" />
+      </span>
+    </div>
+    <div>
+      <label> 系统代理：</label>
+      <span>
+        <label for="switch-open">
+          <input type="checkbox" id="switch-open" name="switch-open" role="switch" />
+          开启
+        </label>
+        <label for="switch-close">
+          <input type="checkbox" id="switch-close" name="switch-close" role="switch" />
+          关闭
+        </label>
+      </span>
+    </div>
+    <div>
+      <button type="submit" id="btnSave">保存</button>
+    </div>
+    <script>
+      // var { app, BrowserWindow, ipcMain, tray } = jsModules.electrino;
+      let defaultConfig = {
+        tv: {
+          sessionid: ``,
+        },
+      };
+      let config = Object.assign({}, defaultConfig);
+      getConfig();
+      function getConfig() {
+        let configText = app.getItem('LOCAL_CONFIG') || '{}';
+        let configJson = JSON.parse(configText);
+        return Object.assign(config, configJson);
+      }
+      function setConfig() {
+        let sessionid = $('txtSessionId').val();
+        config.tv.sessionid = sessionid;
+        // app.setItem('LOCAL_CONFIG', config);
+        app.notify('提示', '保存成功');
+      }
+      $(document).ready(function () {
+        $('#btnSave').on('click', function () {
+          setConfig();
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,9 +1,9 @@
-const electrino = require("electrino");
 const { app, tray, BrowserWindow, ipcMain, Tray, nativeImage } = require('electrino')
 const path = require('path');
-const assetsDir = path.join(__dirname, 'assets')
+const assetsDir = path.join(__dirname, 'assets');
 
 let window = undefined;
+let settingWindow = undefined;
 app.on('ready', () => {
   // Setup the menubar with an icon
   // let client = new WebSocket('wss://real.coinall.ltd:8443/ws/v3');
@@ -21,7 +21,10 @@ app.on('ready', () => {
   tray.on('click', function (event) {
     // window.loadURL(`file://${path.join(__dirname, 'index.html')}`);
     tray.setIcon('icon@4x.png');
-    window.reload();
+    // window.reload();
+  });
+  tray.on('setting', () => {
+    showSetting();
   });
 
   // Make the popup window for the menubar
@@ -36,7 +39,12 @@ app.on('ready', () => {
   // Tell the popup window to load our index.html file
   // window.loadURL(`file://${path.join(__dirname, 'index.html')}`);
   window.loadURL(`https://cn.tradingview.com/chart/Bz44ipwy/?symbol=OKEX%3ABTCUSDT`);
-  window.on('blur', () => { })
+  window.on('blur', () => { });
+  window.on('created', (ctx) => {
+    let js = require(`file://${path.join(__dirname, 'index.js')}`);
+    console.log(js);
+    ctx.evalScript(`console.log("eval js1");`);
+  });
 })
 
 const toggleWindow = () => {
@@ -46,6 +54,30 @@ const toggleWindow = () => {
     window.focus()
   } else {
     showWindow()
+  }
+}
+
+function showSetting () {
+  if (settingWindow) {
+    settingWindow.show();
+    settingWindow.focus();
+  } else {
+    settingWindow = new BrowserWindow({
+      width: 400,
+      height: 300,
+      show: true,
+      frame: true,
+      resizable: false,
+      closable: true,
+      minimizable: false,
+      maximizable: false
+    });
+    settingWindow.loadURL(`file://${path.join(__dirname, 'setting.html')}`);
+    settingWindow.on('created', (ctx) => {
+      console.log(ctx);
+      let js = require(`file://${path.join(__dirname, 'setting.html')}`);
+      ctx.evalScript(`console.log("eval js1");`);
+    });
   }
 }
 

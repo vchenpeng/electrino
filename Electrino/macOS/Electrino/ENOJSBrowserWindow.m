@@ -26,13 +26,16 @@
     self = [super init];
     
     //NSLog(@"%s, %@", __func__, opts);
-
     self.eventCallbacks = [NSMutableDictionary dictionary];
 
     id val;
     BOOL show = YES;
     BOOL resizable = YES;
     BOOL hasFrame = YES;
+    BOOL closable = YES;
+    BOOL minimizable = YES;
+    BOOL maximizable = YES;
+    
     if ((val = opts[@"show"])) {
         show = [val boolValue];
     }
@@ -42,8 +45,19 @@
     if ((val = opts[@"frame"])) {
         hasFrame = [val boolValue];
     }
+    if ((val = opts[@"closable"])) {
+        closable = [val boolValue];
+    }
+    if ((val = opts[@"minimizable"])) {
+        minimizable = [val boolValue];
+    }
+    if ((val = opts[@"maximizable"])) {
+        maximizable = [val boolValue];
+    }
 
     self.windowController = [[ENOBrowserWindowController alloc] initAsResizable:resizable hasFrame:hasFrame];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCreateJSContext:) name:@"DidCreateContextNotification" object:nil];
     
     NSWindow *win = self.windowController.window;
     NSRect frame = win.frame;
@@ -56,7 +70,10 @@
 
     [win setFrame:frame display:NO];
     [win center];
-
+    [[win standardWindowButton:NSWindowCloseButton] setEnabled:closable];
+    [[win standardWindowButton:NSWindowMiniaturizeButton] setEnabled:minimizable];
+    [[win standardWindowButton:NSWindowZoomButton] setEnabled:maximizable];
+    
     if (show)
         [self show];
     
@@ -75,6 +92,11 @@
     [self.windowController reload];
 }
 
+- (void)evalScript:(NSString *)js
+{
+    [self.windowController evalScript:js];
+}
+
 - (void)on:(NSString *)event withCallback:(JSValue *)cb
 {
     if (event.length > 0 && cb) {
@@ -84,6 +106,20 @@
         self.eventCallbacks[event] = cbArr;
     }
 }
+
+- (void)didCreateJSContext:(NSNotification *)notification
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"app/index" ofType:@"js"];
+    NSString* content = [NSString stringWithContentsOfFile:path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    [self.windowController.webView.mainFrame.javaScriptContext evaluateScript:content];
+    
+    for (JSValue *cb in self.eventCallbacks[@"created"]) {
+        [cb callWithArguments:@[self]];
+    }
+}
+
 
 - (BOOL)isVisible
 {

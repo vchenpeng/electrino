@@ -40,14 +40,18 @@
     self.statusItem.highlightMode = YES;
     
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"view menu"];
-    NSMenuItem *item1 = [[NSMenuItem alloc] initWithTitle:@"显示主页" action:@selector(menuClick) keyEquivalent:@""];
-    NSMenuItem *item2 = [[NSMenuItem alloc] initWithTitle:@"退出" action:@selector(menuClick) keyEquivalent:@""];
+    NSMenuItem *item1 = [[NSMenuItem alloc] initWithTitle:@"偏好设置" action:@selector(settingMenuClick:) keyEquivalent:@""];
+    NSMenuItem *item3 = [[NSMenuItem alloc] initWithTitle:@"重新初始化" action:@selector(settingMenuClick:) keyEquivalent:@""];
+    NSMenuItem *item2 = [[NSMenuItem alloc] initWithTitle:@"退出" action:@selector(menuClick:) keyEquivalent:@""];
     item1.target = self;
+    item2.target = self;
+    item3.target = self;
     
     [menu addItem:item1];
+    [menu addItem:item3];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItem:item2];
-//    self.statusItem.menu = menu;
+    self.statusItem.menu = menu;
     
     NSStatusBarButton *barButton = self.statusItem.button;
     barButton.action = @selector(statusBarButtonAction:);
@@ -103,7 +107,7 @@
 }
 
 -(void)notice:(id)sender{
-    NSLog(@"%@",sender);
+    NSLog(@"%@", sender);
 }
 
 - (NSDictionary *)getBounds
@@ -124,6 +128,13 @@
 
 
 #pragma mark --- actions ---
+
+- (IBAction)settingMenuClick:(id)sender
+{
+    for (JSValue *cb in self.eventCallbacks[@"setting"]) {
+        [cb callWithArguments:@[]];
+    }
+}
 
 - (IBAction)statusBarButtonAction:(id)sender
 {

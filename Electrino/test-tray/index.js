@@ -97,21 +97,21 @@ function getCookie (name) {
 }
 
 function initTv () {
-  fetch(`https://pine-facade.tradingview.com/pine-facade/translate/USER;muCkNRKEaqiuwWh8gaxA6VWF8AlvQ5YN/306.0`).then(res => {
-    return res.json();
-  }).then(res => {
-    console.log('pine', res);
-    if (res.success === true) {
-      let metaInfo = res.result.metaInfo.styles;
-      var plots = {};
-      Object.keys(res.result.metaInfo.styles).forEach((plotId) => {
-        plots[plotId] = res.result.metaInfo.styles[plotId].title.replace(/ /g, '_');//.replace(/[^a-zA-Z0-9]/g, '');
-      });
-      console.log('plots', plots);
-      return plots;
+  Promise.resolve().then(() => {
+    let pine = window.initData.content.charts[0].panes[0].sources.find(x => x.id === '2tIBJK');
+    if (pine) {
+      return pine;
     } else {
       throw new Error('pine error');
     }
+  }).then(pine => {
+    let metaInfo = pine.metaInfo.styles;
+    var plots = {};
+    Object.keys(metaInfo).forEach((plotId) => {
+      plots[plotId] = metaInfo[plotId].title.replace(/ /g, '_');//.replace(/[^a-zA-Z0-9]/g, '');
+    });
+    console.log('page plots', plots);
+    return plots;
   }).then(plots => {
     WSBackendConnection._socket._events.message.push(function (info) {
       try {

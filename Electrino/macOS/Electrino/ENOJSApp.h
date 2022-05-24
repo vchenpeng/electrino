@@ -27,6 +27,14 @@ JSExportAs(runCmd,
 - (NSString *)runCmd:(NSString *)text:(JSValue *) cb
 );
 
+JSExportAs(getItem,
+- (NSString *)getItem:(NSString *)key
+);
+
+JSExportAs(setItem,
+- (NSString *)setItem:(NSString *)key:(NSString *)value
+);
+
 @end
 
 

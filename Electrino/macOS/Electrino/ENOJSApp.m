@@ -101,4 +101,18 @@
     return result;
 }
 
+- (NSString *)getItem:(NSString *)key
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *value = [userDefaults objectForKey:key];
+    return value;
+}
+
+- (void)setItem:(NSString *)key:(NSString *)value
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:key forKey:value];
+    [userDefaults synchronize];
+}
+
 @end

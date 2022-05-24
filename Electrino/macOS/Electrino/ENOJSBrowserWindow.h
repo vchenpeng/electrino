@@ -19,6 +19,7 @@
 
 - (void)loadURL:(NSString *)url;
 - (void)reload;
+- (void)evalScript:(NSString *)js;
 
 - (BOOL)isVisible;
 - (void)show;

@@ -14,11 +14,12 @@
 
 @interface ENOBrowserWindowController : NSWindowController
 
-@property (nonatomic, strong) IBOutlet WebView *testWebView;
+@property (nonatomic, readonly, strong) IBOutlet WebView *webView;
 
 - (instancetype)initAsResizable:(BOOL)resizable hasFrame:(BOOL)hasFrame;
 
 - (void)loadURL:(NSURL *)url;
 - (void)reload;
+- (void)evalScript:(NSString *)js;
 
 @end

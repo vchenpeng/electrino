@@ -21,18 +21,15 @@
 #import "ENOJSProcess.h"
 #import "ENOJSConsole.h"
 #import "ENOJavaScriptApp.h"
-#import "ENOJSTray.h"
-
 
 
 @interface ENOBrowserWindowController () <WebFrameLoadDelegate>
 
 #if USE_WKWEBVIEW
-@property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, readwrite, strong) WKWebView *webView;
 #else
-@property (nonatomic, strong) WebView *webView;
+@property (nonatomic, readwrite, strong) WebView *webView;
 #endif
-@property (nonatomic, strong) ENOJSTray *tray;
 
 @end
 
@@ -134,6 +131,13 @@
     [self.webView.mainFrame reload];
 }
 
+- (void)evalScript:(NSString *)js
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.webView.mainFrame.javaScriptContext evaluateScript:js];
+    });
+}
+
 #if !USE_WKWEBVIEW
 - (void)webView:(WebView *)webView didCreateJavaScriptContext:(JSContext *)jsContext forFrame:(WebFrame *)frame
 {
@@ -145,11 +149,7 @@
     ENOJavaScriptApp *jsApp = [ENOJavaScriptApp sharedApp];
     jsContext[@"jsModules"] = jsApp.jsModules;
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"app/index" ofType:@"js"];
-    NSString* content = [NSString stringWithContentsOfFile:path
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    [jsContext evaluateScript:content];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DidCreateContextNotification" object:jsContext];
     
 //    [NSApp terminate:self];
     
@@ -162,14 +162,6 @@
     }
 }
 
-
-- (void)webView:(WebView *)webView webViewDidFinishLoad:(WebView *)webView
-{
-    // 拼接JS的代码
-    NSMutableString *JSStringM = [NSMutableString string];
-    [JSStringM appendString:@"alert('ok');"];
-    [webView stringByEvaluatingJavaScriptFromString:JSStringM];
-}
 #endif
 
 @end
