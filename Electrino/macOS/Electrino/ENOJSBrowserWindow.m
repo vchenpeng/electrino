@@ -15,6 +15,7 @@
 @interface ENOJSBrowserWindow ()
 
 @property (nonatomic, strong) NSMutableDictionary *eventCallbacks;
+@property (nonatomic, strong) NSString *injectScript;
 
 @end
 
@@ -35,7 +36,12 @@
     BOOL closable = YES;
     BOOL minimizable = YES;
     BOOL maximizable = YES;
+    NSString *injectScript = @"";
     
+    if ((val = opts[@"injectScript"])) {
+        injectScript = opts[@"injectScript"];
+    }
+    self.injectScript = injectScript;
     if ((val = opts[@"show"])) {
         show = [val boolValue];
     }
@@ -54,10 +60,10 @@
     if ((val = opts[@"maximizable"])) {
         maximizable = [val boolValue];
     }
-
-    self.windowController = [[ENOBrowserWindowController alloc] initAsResizable:resizable hasFrame:hasFrame];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCreateJSContext:) name:@"DidCreateContextNotification" object:nil];
+
+    self.windowController = [[ENOBrowserWindowController alloc] initAsResizable:resizable hasFrame:hasFrame];
     
     NSWindow *win = self.windowController.window;
     NSRect frame = win.frame;
@@ -73,6 +79,7 @@
     [[win standardWindowButton:NSWindowCloseButton] setEnabled:closable];
     [[win standardWindowButton:NSWindowMiniaturizeButton] setEnabled:minimizable];
     [[win standardWindowButton:NSWindowZoomButton] setEnabled:maximizable];
+    
     
     if (show)
         [self show];
@@ -94,7 +101,10 @@
 
 - (void)evalScript:(NSString *)js
 {
-    [self.windowController evalScript:js];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.windowController evalScript:js];
+    });
 }
 
 - (void)on:(NSString *)event withCallback:(JSValue *)cb
@@ -109,17 +119,18 @@
 
 - (void)didCreateJSContext:(NSNotification *)notification
 {
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"app/index" ofType:@"js"];
-    NSString* content = [NSString stringWithContentsOfFile:path
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    [self.windowController.webView.mainFrame.javaScriptContext evaluateScript:content];
+//    NSString* path = [[NSBundle mainBundle] pathForResource:@"app/index" ofType:@"js"];
+//    NSString* content = [NSString stringWithContentsOfFile:path
+//                                                  encoding:NSUTF8StringEncoding
+//                                                     error:NULL];
+//    [self.windowController.webView.mainFrame.javaScriptContext evaluateScript:content];
+    
+    [self.windowController.webView.mainFrame.javaScriptContext evaluateScript:self.injectScript];
     
     for (JSValue *cb in self.eventCallbacks[@"created"]) {
         [cb callWithArguments:@[self]];
     }
 }
-
 
 - (BOOL)isVisible
 {
@@ -128,7 +139,8 @@
 
 - (void)show
 {
-    [self.windowController showWindow:nil];
+    [self.windowController showWindow:self];
+    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 }
 
 - (void)hide

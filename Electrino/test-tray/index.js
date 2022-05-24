@@ -1,4 +1,3 @@
-
 const { app, BrowserWindow, ipcMain, tray, nativeImage } = jsModules.electrino;
 
 const isInTvPage = window.location.host === 'cn.tradingview.com';

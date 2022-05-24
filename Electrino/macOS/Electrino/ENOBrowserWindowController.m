@@ -84,6 +84,7 @@
     window.contentView = webView;
     self.webView = webView;
     
+    
     return [self initWithWindow:window];
 }
 

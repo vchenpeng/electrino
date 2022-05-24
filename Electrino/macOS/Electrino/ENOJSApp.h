@@ -35,6 +35,10 @@ JSExportAs(setItem,
 - (NSString *)setItem:(NSString *)key:(NSString *)value
 );
 
+JSExportAs(readFile,
+- (NSString *)readFile:(NSString *)file
+);
+
 @end
 
 

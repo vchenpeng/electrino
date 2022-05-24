@@ -115,4 +115,13 @@
     [userDefaults synchronize];
 }
 
+- (NSString *)readFile:(NSString *)file
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:file ofType:@"js"];
+    NSString* content = [NSString stringWithContentsOfFile:path
+                                                     encoding:NSUTF8StringEncoding
+                                                        error:NULL];
+    return content;
+}
+
 @end

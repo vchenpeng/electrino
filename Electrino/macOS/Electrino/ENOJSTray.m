@@ -41,8 +41,8 @@
     
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"view menu"];
     NSMenuItem *item1 = [[NSMenuItem alloc] initWithTitle:@"偏好设置" action:@selector(settingMenuClick:) keyEquivalent:@""];
-    NSMenuItem *item3 = [[NSMenuItem alloc] initWithTitle:@"重新初始化" action:@selector(settingMenuClick:) keyEquivalent:@""];
-    NSMenuItem *item2 = [[NSMenuItem alloc] initWithTitle:@"退出" action:@selector(menuClick:) keyEquivalent:@""];
+    NSMenuItem *item3 = [[NSMenuItem alloc] initWithTitle:@"刷新" action:@selector(refreshMenuClick:) keyEquivalent:@""];
+    NSMenuItem *item2 = [[NSMenuItem alloc] initWithTitle:@"退出" action:@selector(exitMenuClick:) keyEquivalent:@""];
     item1.target = self;
     item2.target = self;
     item3.target = self;
@@ -134,6 +134,18 @@
     for (JSValue *cb in self.eventCallbacks[@"setting"]) {
         [cb callWithArguments:@[]];
     }
+}
+
+- (IBAction)refreshMenuClick:(id)sender
+{
+    for (JSValue *cb in self.eventCallbacks[@"refresh"]) {
+        [cb callWithArguments:@[]];
+    }
+}
+
+- (IBAction)exitMenuClick:(id)sender
+{
+    [NSApp terminate:self];
 }
 
 - (IBAction)statusBarButtonAction:(id)sender

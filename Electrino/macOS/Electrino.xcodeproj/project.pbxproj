@@ -32,6 +32,7 @@
 		FF80038E2702FAA90037ED3A /* icon-up@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF80038B2702FAA90037ED3A /* icon-up@4x.png */; };
 		FF80038F2702FAA90037ED3A /* icon@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF80038C2702FAA90037ED3A /* icon@4x.png */; };
 		FF8003902702FAA90037ED3A /* icon1@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF80038D2702FAA90037ED3A /* icon1@4x.png */; };
+		FFA00C9D283CE29100BFE977 /* setting.html in CopyFiles */ = {isa = PBXBuildFile; fileRef = FFA00C9C283CE29100BFE977 /* setting.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,7 @@
 				5A3C033A1ECCDCA100643964 /* index.js in CopyFiles */,
 				5A3C033B1ECCDCA400643964 /* main.js in CopyFiles */,
 				5A3C033C1ECCDCA600643964 /* pako.min.js in CopyFiles */,
+				FFA00C9D283CE29100BFE977 /* setting.html in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +95,7 @@
 		FF80038B2702FAA90037ED3A /* icon-up@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-up@4x.png"; path = "assets/icon-up@4x.png"; sourceTree = "<group>"; };
 		FF80038C2702FAA90037ED3A /* icon@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@4x.png"; path = "assets/icon@4x.png"; sourceTree = "<group>"; };
 		FF80038D2702FAA90037ED3A /* icon1@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon1@4x.png"; path = "assets/icon1@4x.png"; sourceTree = "<group>"; };
+		FFA00C9C283CE29100BFE977 /* setting.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = setting.html; path = "test-tray/setting.html"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,7 @@
 		5A3C03301ECCDC8700643964 /* test-tray */ = {
 			isa = PBXGroup;
 			children = (
+				FFA00C9C283CE29100BFE977 /* setting.html */,
 				FF8003852702FA900037ED3A /* icon-1@4x.png */,
 				FF8003882702FA990037ED3A /* icon-down@4x.png */,
 				FF80038B2702FAA90037ED3A /* icon-up@4x.png */,

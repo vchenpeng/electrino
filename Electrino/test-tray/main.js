@@ -1,5 +1,6 @@
 const { app, tray, BrowserWindow, ipcMain, Tray, nativeImage } = require('electrino')
 const path = require('path');
+const fs = require('fs');
 const assetsDir = path.join(__dirname, 'assets');
 
 let window = undefined;
@@ -26,25 +27,29 @@ app.on('ready', () => {
   tray.on('setting', () => {
     showSetting();
   });
+  tray.on('refresh', () => {
+    window.reload();
+  });
+  tray.on('exit', () => {
+    app.exit();
+  });
 
+  // let injectScript = app.readFile(`app/index`);
   // Make the popup window for the menubar
   window = new BrowserWindow({
     width: 500,
     height: 350,
-    show: false,
+    show: true,
     frame: true,
-    resizable: true
+    resizable: true,
+    injectScript: app.readFile(`app/index`)
   });
 
   // Tell the popup window to load our index.html file
   // window.loadURL(`file://${path.join(__dirname, 'index.html')}`);
   window.loadURL(`https://cn.tradingview.com/chart/Bz44ipwy/?symbol=OKEX%3ABTCUSDT`);
   window.on('blur', () => { });
-  window.on('created', (ctx) => {
-    let js = require(`file://${path.join(__dirname, 'index.js')}`);
-    console.log(js);
-    ctx.evalScript(`console.log("eval js1");`);
-  });
+  window.on('created', (ctx) => { });
 })
 
 const toggleWindow = () => {
@@ -59,6 +64,7 @@ const toggleWindow = () => {
 
 function showSetting () {
   if (settingWindow) {
+    // settingWindow.setPosition(0, 0, false);
     settingWindow.show();
     settingWindow.focus();
   } else {
@@ -74,8 +80,6 @@ function showSetting () {
     });
     settingWindow.loadURL(`file://${path.join(__dirname, 'setting.html')}`);
     settingWindow.on('created', (ctx) => {
-      console.log(ctx);
-      let js = require(`file://${path.join(__dirname, 'setting.html')}`);
       ctx.evalScript(`console.log("eval js1");`);
     });
   }
