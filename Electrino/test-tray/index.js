@@ -97,7 +97,7 @@ function getCookie (name) {
 
 function initTv () {
   Promise.resolve().then(() => {
-    let pine = window.initData.content.charts[0].panes[0].sources.find(x => x.id === 'tWvGxk');
+    let pine = window.initData.content.charts[0].panes[0].sources.find(x => x.type === 'Study' && x.metaInfo.description.indexOf('XMB') >= 0);
     if (pine) {
       return pine;
     } else {
